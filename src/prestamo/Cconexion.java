@@ -9,6 +9,7 @@ package prestamo;
  *
  * @author hugo
  */
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,21 +21,41 @@ public class Cconexion {
     {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance(); 
-            Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/db_authors","root","");
+            Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca","root","");
             con = conexion;
         }
         catch (Exception e) {
-            
         }    
     }
     public Connection getconector()
     {
         return con;
     }
-    public List<String[]> bucscarpornom(String nombre)
+    public int num_coin_buscar_pornom(String nombre)
     {
-        List<String[]> lista = new ArrayList<String[]>();
-        String [] datos = new String[14];
+        int numero = 0;
+        try{
+            String query = "CALL count_coincidencias_busq_libros ('" + nombre + "')";
+            Statement sentencia = con.createStatement();
+            ResultSet resp = sentencia.executeQuery(query);
+            while(resp.next())
+            {
+                numero = resp.getInt(1);
+            }
+            return numero;
+        }
+        catch(Exception e)
+        {
+            System.err.println(e);
+        }
+        finally{
+            return numero;
+        }
+    }
+    public List<List<String>> bucscarpornom(String nombre)
+    {
+        List<List<String>> lista = new ArrayList<List<String>>();
+        List<String> datos = new ArrayList<String>();
         try {
             String query = "SELECT * from libros WHERE lib_name LIKE '%" + nombre + "%'";
             //datos[0] = query;
@@ -46,11 +67,11 @@ public class Cconexion {
             while(resp.next())
             {
                 temporal = resp.getInt(1);
-                datos[0] = Integer.toString(temporal);
-                datos[1] = resp.getString(2);
-                datos[2] = resp.getString(3);
-                datos[3] = resp.getString(4);
-             
+                datos.add(Integer.toString(temporal));
+                datos.add(resp.getString(2));
+                datos.add(resp.getString(3));
+                datos.add(resp.getString(4));
+                
                 //datos[4] = resp.getInt(5)
                 lista.add(datos);
                 //con.close();
@@ -58,7 +79,6 @@ public class Cconexion {
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, e);
         }
-        
         return lista;
     }
 }

@@ -80,6 +80,7 @@ public class JFprincipal extends javax.swing.JFrame {
             .addGap(0, 498, Short.MAX_VALUE)
         );
         //setLayout(null);
+       
         contenedor = getContentPane();
         contenedor.setBackground(new Color(26,35,126));
         getContentPane().setBackground(new Color(26,35,126));

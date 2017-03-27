@@ -15,7 +15,8 @@ import java.util.List;
 public class JPprestamo extends javax.swing.JPanel {
 
     Cconexion miCconexion = new Cconexion();
-    List<String []> resultado = new ArrayList<String[]>();
+    private Jplista_libros milista;
+    List<List<String>> resultado = new ArrayList<List<String>>();
     /**
      * Creates new form JPprestamo
      */
@@ -241,15 +242,24 @@ public class JPprestamo extends javax.swing.JPanel {
     }//GEN-LAST:event_JTeditorialMouseClicked
 
     private void JTnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTnombreKeyReleased
-        System.out.println("Buscando en jt1");
-        resultado = miCconexion.bucscarpornom(this.JTnombre.getText());
         
+        //this.jPanel2.setVisible(false);
+        System.out.println("Buscando en jt1");
+        int numero = miCconexion.num_coin_buscar_pornom(this.JTnombre.getText());
+        resultado = miCconexion.bucscarpornom(this.JTnombre.getText());
         if(resultado.size() != 0)
         {
-            String [] arreglo = resultado.get(0);
-            System.out.println(arreglo[0]);
+            List<String> arreglo = resultado.get(0);
+            System.out.println(arreglo.get(0));
         }
-            
+         //Poniendo nuevo panel en el formulario
+        milista = new Jplista_libros(resultado, numero);
+        milista.setSize(474, 464);
+        this.jPanel2.removeAll();
+        this.jPanel2.add(milista);
+        this.jPanel2.revalidate();
+        this.jPanel2.repaint();
+        
     }//GEN-LAST:event_JTnombreKeyReleased
 
     private void JTautorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTautorKeyReleased

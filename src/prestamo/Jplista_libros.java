@@ -5,19 +5,48 @@
  */
 package prestamo;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JLabel;
+
 /**
  *
  * @author hugo
  */
 public class Jplista_libros extends javax.swing.JPanel {
-
+    List<List<String>> lista_libros = new ArrayList<List<String>>();
+    List<String> datos = new ArrayList<String>();
+    List<List<JLabel>> lista_labels = new ArrayList<List<JLabel>>();
+    List<JLabel> labels = new ArrayList<JLabel>();
+    
     /**
      * Creates new form Jplista_libros
      */
     public Jplista_libros() {
         initComponents();
     }
-
+    public Jplista_libros( List<List<String>> milista_libros, int numero){
+        initComponents();
+        set_labels();
+        this.jLabel11.setText(this.jLabel11.getText() + numero);
+        JLabel ltemporal;
+        lista_libros = milista_libros;
+        
+        for(int x = 0; x < lista_libros.size(); x++)
+        {
+            labels = lista_labels.get(x);
+            datos = milista_libros.get(x);
+            ltemporal = labels.get(0);
+            ltemporal.setText(datos.get(0));
+            ltemporal = labels.get(1);
+            ltemporal.setText(datos.get(1));
+        }
+        if(lista_libros.size() < 5)
+        {
+            limpiar_labels(lista_libros.size());
+        }
+            
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,41 +56,155 @@ public class Jplista_libros extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jl1_ind = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
-        jLabel1.setText("Libros:");
+        jl1_ind.setText("Uno:");
 
-        jLabel2.setText("uno");
+        jLabel2.setText("Libro");
+
+        jLabel3.setText("dos");
+
+        jLabel4.setText("Libros:");
+
+        jLabel5.setText("tres");
+
+        jLabel6.setText("Libros:");
+
+        jLabel7.setText("cuatro");
+
+        jLabel8.setText("Libro");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Búsqueda");
+
+        jLabel9.setText("Cinco");
+
+        jLabel10.setText("Libro");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("Número de coincidencias: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jl1_ind))
+                                .addGap(91, 91, 91)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel4)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9))
+                                .addGap(83, 83, 83)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel8))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jLabel2)))
-                .addContainerGap(264, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                        .addComponent(jLabel11)
+                        .addGap(44, 44, 44))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel1)
-                .addGap(58, 58, 58)
-                .addComponent(jLabel2)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel11))
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl1_ind)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jl1_ind;
     // End of variables declaration//GEN-END:variables
+    private void limpiar_labels(int num_libros)
+    {
+        for(int x = 4; x >= num_libros; x--)
+        {
+            labels = lista_labels.get(x);
+            labels.get(0).setVisible(false);
+            labels.get(1).setVisible(false);
+        }
+    }
+    private void set_labels()
+    {
+        labels.add(jl1_ind);
+        labels.add(jLabel2);
+        lista_labels.add(labels);
+        labels = new ArrayList<JLabel>();
+        labels.add(jLabel3);
+        labels.add(jLabel4);
+        lista_labels.add(labels);
+        labels = new ArrayList<JLabel>();
+        labels.add(jLabel5);
+        labels.add(jLabel6);
+        lista_labels.add(labels);
+        labels = new ArrayList<JLabel>();
+        labels.add(jLabel7);
+        labels.add(jLabel8);
+        lista_labels.add(labels);
+        labels = new ArrayList<JLabel>();
+        labels.add(jLabel9);
+        labels.add(jLabel10);
+        lista_labels.add(labels);
+        labels = new ArrayList<JLabel>();
+    }
 }
