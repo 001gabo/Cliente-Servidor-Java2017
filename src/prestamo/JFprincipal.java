@@ -26,7 +26,15 @@ public class JFprincipal extends javax.swing.JFrame {
      * Creates new form JFprincipal
      */
     public JFprincipal() {
-        iniciar();
+        initComponents();
+        contenedor = getContentPane();
+        contenedor.setBackground(new Color(26,35,126));
+        getContentPane().setBackground(new Color(26,35,126));
+        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panelprestamo = new JPprestamo(this);
+        panelprestamo.setSize(panelprestamo.getPreferredSize());
+        this.add(panelprestamo);
     }
 
     /**
@@ -50,62 +58,23 @@ public class JFprincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1038, Short.MAX_VALUE)
+            .addGap(0, 1080, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 477, Short.MAX_VALUE)
+            .addGap(0, 560, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void iniciar()
-    {
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1038, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
-        );
-        //setLayout(null);
-       
-        contenedor = getContentPane();
-        contenedor.setBackground(new Color(26,35,126));
-        getContentPane().setBackground(new Color(26,35,126));
-        setPreferredSize(new Dimension(1000, 510));
-        
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        panelMain = new JPprestamo();
-        //panelMain.setBackground(new Color(26,35,126));
-        panelMain.setBounds(0, 0, 1000, 510);
-        //panelMain.setPreferredSize(new Dimension(1000, 510));
-        
-        add(panelMain);
-        //panelprestamo = new JPprestamo();
-        //panelMain.add(panelprestamo);
-
-        pack();
-    }
+   
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         
         System.out.println("abierto2");
         //jPanel1 = new JPprestamo();
     }//GEN-LAST:event_formWindowOpened
-
     /**
      * @param args the command line arguments
      */
@@ -140,6 +109,7 @@ public class JFprincipal extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

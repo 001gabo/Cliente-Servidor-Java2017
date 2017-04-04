@@ -31,11 +31,23 @@ public class Cconexion {
     {
         return con;
     }
-    public int num_coin_buscar_pornom(String nombre)
+    public int num_coin_buscar(String parametro, int opcion)
     {
         int numero = 0;
+        String query = "";
         try{
-            String query = "CALL count_coincidencias_busq_libros ('" + nombre + "')";
+            switch(opcion)
+            {
+                case 1:
+                    query = "CALL count_coincidencias_busq_libros_nombre ('" + parametro + "')";
+                    break;
+                case 2:
+                    query = "CALL count_coincidencias_busq_libros_autor ('" + parametro + "')";
+                    break;
+                case 3:
+                    query = "CALL count_coincidencias_busq_libros_editorial ('" + parametro + "')";
+                    break;
+            }
             Statement sentencia = con.createStatement();
             ResultSet resp = sentencia.executeQuery(query);
             while(resp.next())
@@ -48,29 +60,36 @@ public class Cconexion {
         {
             System.err.println(e);
         }
-        finally{
-            return numero;
-        }
+        return numero;
     }
-    public List<List<String>> bucscarpornom(String nombre)
+    public List<List<String>> bucscarpornom(String parametro, int indice, int opcion)
     {
         List<List<String>> lista = new ArrayList<List<String>>();
         List<String> datos = new ArrayList<String>();
         try {
-            String query = "SELECT * from libros WHERE lib_name LIKE '%" + nombre + "%'";
-            //datos[0] = query;
-            //lista.add(datos);
-            System.out.println(query);
+            String query = "";
+            switch(opcion)
+            {
+                case 1:
+                    query = "CALL buscar_libros_nombre ('" + parametro + "', '" + indice + "')";
+                    break;
+                case 2:
+                    query = "CALL buscar_libros_autor ('" + parametro + "', '" + indice + "')";
+                    break;
+                case 3:
+                    query = "CALL buscar_libros_editorial ('" + parametro + "', '" + indice + "')";
+                    break;
+            }
             int temporal;
             Statement sentencia = con.createStatement();
             ResultSet resp = sentencia.executeQuery(query);
             while(resp.next())
             {
-                temporal = resp.getInt(1);
+                temporal = resp.getInt("id_lib");
                 datos.add(Integer.toString(temporal));
-                datos.add(resp.getString(2));
-                datos.add(resp.getString(3));
-                datos.add(resp.getString(4));
+                datos.add(resp.getString("lib_name"));
+                datos.add(resp.getString("aut_name"));
+                datos.add(resp.getString("ed_name"));
                 
                 //datos[4] = resp.getInt(5)
                 lista.add(datos);
