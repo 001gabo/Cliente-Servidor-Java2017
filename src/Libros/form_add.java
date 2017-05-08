@@ -55,6 +55,8 @@ public class form_add extends javax.swing.JFrame {
         btn_author = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         btn_categorianew = new javax.swing.JButton();
+        in_diaspres = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -113,7 +115,7 @@ public class form_add extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 397, 90, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 90, -1));
 
         in_edicion.setName("in_edicion"); // NOI18N
         getContentPane().add(in_edicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 95, -1));
@@ -164,9 +166,9 @@ public class form_add extends javax.swing.JFrame {
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Estado");
+        jLabel12.setText("Dias a prestar");
         jLabel12.setName("in_anio"); // NOI18N
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
 
         combo_categoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(combo_categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 110, -1));
@@ -193,7 +195,7 @@ public class form_add extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 397, 90, -1));
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 90, -1));
 
         btn_categorianew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,6 +203,12 @@ public class form_add extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_categorianew, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 20, 20));
+        getContentPane().add(in_diaspres, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 90, -1));
+
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Estado");
+        jLabel13.setName("in_anio"); // NOI18N
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -258,7 +266,8 @@ public class form_add extends javax.swing.JFrame {
  
         
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         try{
+         int diaspres=Integer.parseInt(in_diaspres.getText());
+        try{
           con=conexion_mysql.getConnection();
           s= con.createStatement();
           
@@ -300,7 +309,7 @@ public class form_add extends javax.swing.JFrame {
    // Ahora haremos el insert principal
         if(in_cod.getText().matches("[A-Z]{2}+[/-]{1}+[0-9]{2}+[/-]{1}+[0-9]{1}")) {
         
-         pst=con.prepareStatement("call pa_addglobal('"+(in_desc.getText())+"','"+(in_name.getText())+"',"+(Integer.parseInt(in_cantidad.getText()))+","+(id_categoria)+","+(id_autor)+",'"+(in_edicion.getText())+"',"+(id_editorial)+","+(Integer.parseInt(in_anio.getText()))+",'"+(in_cod.getText())+"','"+(in_observacion.getText())+"',"+(id_estado)+")");      
+         pst=con.prepareStatement("call pa_addglobal('"+(in_desc.getText())+"','"+(in_name.getText())+"',"+(Integer.parseInt(in_cantidad.getText()))+","+(id_categoria)+","+(id_autor)+",'"+(in_edicion.getText())+"',"+(id_editorial)+","+(Integer.parseInt(in_anio.getText()))+",'"+(in_cod.getText())+"','"+(in_observacion.getText())+"',"+(id_estado)+",'"+(diaspres)+"')");      
       
 //      String query="'"+(in_desc.getText())+"','"+(in_name.getText())+"',"+(Integer.parseInt(in_cantidad.getText()))+","+(id_categoria)+","+(id_autor)+",'"+(in_edicion.getText())+"',"+(id_editorial)+","+(Integer.parseInt(in_anio.getText()))+",'"+(in_cod.getText())+"','"+(in_observacion.getText())+"',"+(id_estado)+"";
 //      System.out.print(""+query);
@@ -484,6 +493,7 @@ public class form_add extends javax.swing.JFrame {
     private javax.swing.JTextField in_cantidad;
     private javax.swing.JTextField in_cod;
     private javax.swing.JTextField in_desc;
+    private javax.swing.JTextField in_diaspres;
     private javax.swing.JTextField in_edicion;
     private javax.swing.JTextField in_name;
     private javax.swing.JTextField in_observacion;
@@ -491,6 +501,7 @@ public class form_add extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
